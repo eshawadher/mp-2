@@ -28,9 +28,8 @@ export default function GameOfThrones(props : { data:Character[] } ){
             {
                 props.data.map((char: Character) =>
                     <SingleCharDiv key={char.id} status={char.status}>
-                        <h1>{char.name}</h1>
-                        <p>{char.species !== "Human" ? "(Not Human)" : ""}</p>
-                        <img src={char.image} alt={`image of ${char.name}`} />
+                        <h1>{char.full_name}</h1>
+                        <img src={char.image} alt={`image of ${char.full_name}`} />
                     </SingleCharDiv>
                 )
             }

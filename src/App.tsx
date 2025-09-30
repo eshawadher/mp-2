@@ -17,28 +17,18 @@ export default function App(){
     // useEffect Hook for error handling and re-rendering.
     useEffect(() => {
         async function fetchData(): Promise<void> {
-            const rawData = await fetch("https://thronesapi.com/api/v2/Characters");
-            //const apiData= (await rawData.json()) as Character[];
-            //setData(apiData);
-            //const {results} : {results: Character[]} = await rawData.json();
-            //setData(results);
-            const apiData = (await rawData.json()) as Array<{
-                id: number;
-                fullName?: string;
-                firstName?: string;
-                lastName?: string;
-                imageUrl?: string;
-            }>;
-            //json turned into array so that api can be used in order to get the attributes i want
-            const {results}: {results: Character[]} = {
-                results: apiData.map((x): Character => ({
-                    id:x.id,
-                    name: x.fullName || "Unknown",
-                    image: x.imageUrl ?? "",
-                    species: "Human",
-                    status: "Unknown",
-                })),
-            };
+            const rawData = await(await fetch("https://thronesapi.com/api/v2/Characters")).json();
+            console.log(rawData);
+            const results: Character[] = [];
+            rawData.map((char)=>{
+                const character: Character  = {
+                    id: char.id,
+                    full_name: char.fullName,
+                    image: char.imageUrl,
+                    title: char.title,
+                }
+                results.push(character);
+            })
             setData(results);
         }
         fetchData()
