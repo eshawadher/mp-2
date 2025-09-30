@@ -26,6 +26,7 @@ export default function App(){
                     full_name: char.fullName,
                     image: char.imageUrl,
                     title: char.title,
+                    status: char.status,
                 }
                 results.push(character);
             })

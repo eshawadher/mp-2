@@ -3,5 +3,6 @@ export interface Character{
     full_name: string;
     image: string;
     title: string;
+    status: string;
 }
 
